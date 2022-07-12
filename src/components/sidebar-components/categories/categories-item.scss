@@ -1,0 +1,22 @@
+.categories__item {
+    margin-right: 8px;
+    margin-bottom: 14px;
+}
+.categories__item-name {
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 19px;
+    color: #4761e6;
+    padding: 5px 16px;
+    border-radius: 10px;
+    background-color: #F2F4FF;
+    display: inline-block;
+}
+
+.categories__item-radio {
+    display: none;
+}
+.categories__item-radio:checked ~ .categories__item-name{
+        color: #F2F4FF;
+        background-color: #4661E6;
+}

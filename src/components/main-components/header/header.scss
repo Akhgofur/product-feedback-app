@@ -1,0 +1,53 @@
+.main-header {
+    padding: 14px 16px 14px 24px;
+    background-color: #373F68;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    margin-bottom: 24px;
+}
+.main-header__img {
+    content: url(../../../assets/img/bulb.svg);
+    display: block;
+    margin-right: 16px;
+}
+.main-header__heading {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 26px;
+    letter-spacing: -0.25px;
+    color: #FFFFFF;
+    margin: 0;
+    padding: 0;
+    margin-right: 38px;
+}
+.main-header__select-title {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #F2F4FE;
+    margin: 0;
+    padding: 0;
+}
+.main-header__select {
+    background-color: transparent;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 20px;
+    padding-right: 9px;
+    color: #F2F4FE;
+    letter-spacing: -0.25px;
+    border: none;
+    margin-right: auto;
+}
+.main-header__btn {
+    border: none;
+    background-color: #AD1FEA;
+    padding: 12px 25px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 20px;
+    color: #F2F4FE;
+}

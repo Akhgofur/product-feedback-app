@@ -1,0 +1,40 @@
+/* GENERAL */
+@import 'fonts.scss';
+html {
+    box-sizing: border-box;
+    height: 100%;
+    scroll-behavior: smooth;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
+  }
+  
+  body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+    font-size: 14px;
+    line-height: 20px;
+    background-color: #F2F2F2;
+    font-family: 'Jost';
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  .container {
+    width: 100%;
+    max-width: 1160px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  

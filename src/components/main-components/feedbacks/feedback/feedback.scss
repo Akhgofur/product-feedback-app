@@ -1,0 +1,100 @@
+.feedback {
+    padding: 28px 32px;
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 10px;
+    &:not(:last-child) {
+        margin-bottom: 20px;
+    }
+}
+.feedback__vote-btn {
+    display: inline-block;
+    padding: 14px 9px 8px;
+    border: none;
+    background-color: #F2F4FE;
+    border-radius: 10px;
+    max-width: 40px;
+    margin-right: 40px;
+}
+.feedback__vote-num {
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 19px;
+    letter-spacing: -0.180556px;
+    color: #3A4374;
+    margin: 0;
+    padding: 0;
+    &::before {
+        display: block;
+        content: '';
+        width: 10px;
+        height: 4px;
+        padding: 3px;
+        margin-right: auto;
+        margin-left: auto;
+        margin-bottom: 8px;
+        background-image: url(../../../../assets/img/strelka.svg);
+        background-position: center;
+        
+    }
+}
+.feedback__content-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+.feedback__title {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 26px;
+    letter-spacing: -0.25px;
+    color: #3A4374;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 4px;
+}
+.feedback__desc {
+    padding: 0;
+    margin: 0;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 23px;
+    color: #647196;
+    margin-bottom: 12px;
+}
+.feedback__button {
+    padding: 5px 16px;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 19px;
+    color: #4661E6; 
+    background-color: #F2F4FE;
+    border-radius: 10px;
+    border: none;
+    display: inline-block;  
+
+}
+.feedback__comment-btn {
+    border: none;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+.feedback__comment-img {
+    content: url(../../../../assets/img/comment.svg);
+    margin-right: 8px;
+    
+}
+.feedback__comment-count {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 23px;
+    text-align: center;
+    letter-spacing: -0.222222px;
+    color: #3A4374;
+}
