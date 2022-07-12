@@ -6,7 +6,6 @@ function Main(){
     return (
         <div className="main">
             <MainHeader/>
-            <Link to={'/sidebar'}>sidebar</Link>
             <FeedbacksList/>
         </div>
     )
