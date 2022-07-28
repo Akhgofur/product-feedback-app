@@ -6,6 +6,7 @@
     width: 100%;
     background-color: #fff;
     border-radius: 10px;
+    position: relative;
     &:not(:last-child) {
         margin-bottom: 20px;
     }
@@ -16,8 +17,10 @@
     border: none;
     background-color: #F2F4FE;
     border-radius: 10px;
-    max-width: 40px;
+    width: 40px;
     margin-right: 40px;
+    z-index: 11;
+    cursor: pointer;
 }
 .feedback__vote-num {
     font-weight: 700;
@@ -76,6 +79,8 @@
     border-radius: 10px;
     border: none;
     display: inline-block;  
+    cursor: pointer;
+    z-index: 100;
 
 }
 .feedback__comment-btn {
@@ -84,6 +89,16 @@
     display: flex;
     align-items: center;
     justify-content: start;
+    text-decoration: none;
+    cursor: pointer;
+    &::after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        content: '';
+    }
 }
 .feedback__comment-img {
     content: url(../../../../assets/img/comment.svg);

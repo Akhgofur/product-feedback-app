@@ -41,8 +41,17 @@
     border: none;
     margin-right: auto;
 }
+// .main-header__select:: {
+//     padding: 12px 24px;
+//     background-color: #fff;
+//     color: #647196;
+//     font-weight: 400;
+//     font-size: 16px;
+//     line-height: 23px;
+//     width: 200px;
+// }
 .main-header__btn {
-    border: none;
+    text-decoration: none;
     background-color: #AD1FEA;
     padding: 12px 25px;
     border-radius: 10px;
@@ -50,4 +59,5 @@
     font-size: 14px;
     line-height: 20px;
     color: #F2F4FE;
+    cursor: pointer;
 }

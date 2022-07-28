@@ -1,12 +1,40 @@
+import { useContext } from "react";
+import { FeedbackContext } from "../../../context/context";
 import Feedback from "./feedback/feedback";
 import './feedbacks-list.scss';
 
-function FeedbacksList(){
+
+function FeedbacksList({selected}){
+    
+    const {data, URL} = useContext(FeedbackContext)
+    let filteredData = data && data.sort((a, b) => {
+        switch (selected) {
+            case "1":
+                return +b.upvotes - +a.upvotes
+                break   
+            case "2":
+                return  +a.upvotes - +b.upvotes
+                break
+            case "3":
+                return  b.comments.length || 0 - a.comments.length || 0
+                break
+            case "4":
+                return  a.comments.length || 0 - b.comments.length || 0
+                break
+            default:
+                return +a.upvotes - +b.upvotes
+                break
+        }
+    })
+
+   if(!filteredData){
+    return <b>Loading...</b>
+   }else{
     return (
         <ul className="feedbacks">
-            <Feedback comments={2} desc={'Easier to search for solutions based on a specific stack.'} title={'Add tags for solutions'} btn={'Enhancement'} votes={112}/>
-            <Feedback comments={4} title={'Add a dark theme option'} desc={'It would help people with light sensitivities and who prefer dark mode.'} btn={'Feature'} votes={99}/>
+            {filteredData.map(item => <Feedback URL={URL} key={item.id} id={item.id} comments={item.comments ? item.comments.length : 0} title={item.title} desc={item.description} btn={item.category} votes={item.upvotes}/>)}
         </ul>
     )
+   }
 }
 export default FeedbacksList;
