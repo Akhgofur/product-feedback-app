@@ -1,21 +1,31 @@
 import './create-modal.scss'
 import {Link, Navigate, useNavigate} from 'react-router-dom'
-import { useContext, useRef, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import { FeedbackContext } from '../../context/context'
+import { useDispatch } from 'react-redux'
+import { addFeedback } from '../../components/main-components/feedbacks/feedbacks-slice'
+import { getCategories } from '../../components/main-components/feedbacks/categories-slice'
+import { useSelector } from 'react-redux'
+import { nanoid } from '@reduxjs/toolkit'
 
 function CreateFeedbackModal(){
-    const {categories, URL} = useContext(FeedbackContext)
     const nameRef = useRef('')
     const categoryRef = useRef('')
     const feedbackRef = useRef('')
     const createFeedbackFormRef = useRef()
-    const [feedback, setFeedback] = useState({})
+    
+    useEffect(() => {
+        dispatch(getCategories())
+    }, [])
+    
+    const categories = useSelector(state => state.categories.categories)
 
     
     const handleSubmit = (e) => {
         e.preventDefault()
         if(nameRef.current.value.trim() !== '' && feedbackRef.current.value.trim() !== ''){
             const newFeedback = {
+                id: nanoid(),
                 title : nameRef.current.value,
                 upvotes : 0 ,
                 isUpvoted : false,
@@ -24,25 +34,15 @@ function CreateFeedbackModal(){
                 comments : []
             }
             setError(false)
-            addFeedback(newFeedback)
-            navigate('/')
+            dispatch(addFeedback(newFeedback))
+            navigate(-1)
         }else{
             setError(!error)
         }
     }
+    const dispatch = useDispatch()
     const [error, setError] = useState(false)
     let navigate = useNavigate()
-    async function addFeedback(feedback){
-        const res = await fetch(URL,{
-              method: 'POST',
-              headers: {
-                    'Content-type' : 'application/json'
-                  },
-                  body: JSON.stringify(
-                        feedback
-                      )
-                    })
-                  }
 
     return (
         <div className="modal-wrapper">

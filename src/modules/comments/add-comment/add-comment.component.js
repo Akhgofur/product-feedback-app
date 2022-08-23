@@ -1,54 +1,46 @@
-import { useContext, useRef } from 'react'
-import { Link } from 'react-router-dom'
-import { FeedbackContext } from '../../../context/context'
+import { useRef, useState } from 'react'
 import './add-comment.style.js'
 import { AddModal, AddModalBottom, AddModalCommentsCount, AddModalForm, AddModalHeading, AddModalInput, AddModalSubmitBtn } from './add-comment.style.js'
+import { nanoid } from '@reduxjs/toolkit'
+import { useDispatch } from 'react-redux'
+import { addComent, addComment } from '../../../components/main-components/feedbacks/feedbacks-slice'
 
 function AddCommentModal({current}){
+
+    const dispatch = useDispatch()
     const addCommentRef = useRef('')
-    const {URL, data} = useContext(FeedbackContext)
     const handleSubmitComment = (e) => {
         e.preventDefault()
-        addComment();
+        const id = current[0].id
+        const commentDesc = addCommentRef.current
+        const comment = {
+            user:{
+                name: 'someone',
+                username: 'someone',
+                image:'https:/picsum.photos/50/50'
+            },
+            id:nanoid(),
+            content:commentDesc.value,
+            replies:[],
+        }
+        let commentsArr = [comment, ...current[0].comments]
+        dispatch(addComment({commentsArr, id}))
+        dispatch(addComent({id, comment}))
         addCommentRef.current.value = ''
     
     }
 
-async function addComment(){
-    const commentDesc = addCommentRef.current
-    const comment = {
-        user:{
-            name: 'someone',
-            username: 'someone',
-            image:'https:/picsum.photos/50/50'
-        },
-        id: current[0].comments.length + 18,
-        content:commentDesc.value
-    }
-    let commentsArr = [comment, ...current[0].comments]
-    
-    const res = await fetch(`${URL}/${current[0].id}`,{
-        method: 'PATCH',
-          headers: {
-                'Content-type' : 'application/json'
-              },
-              body: JSON.stringify(
-                    {
-                        comments: commentsArr
-                    }
-                    )
-                })
-            }
+    const [value, setValue] = useState(250)
             return(
                 <AddModal>
             <AddModalForm onSubmit={handleSubmitComment} action="#">
                 <AddModalHeading>
                     Add Comment
                 </AddModalHeading>
-                <AddModalInput ref={addCommentRef} placeholder='Type your comment here' cols="30" rows="3"></AddModalInput>
+                <AddModalInput onChange={() => setValue(250 - addCommentRef.current.value.length) } maxLength={250} ref={addCommentRef} placeholder='Type your comment here' cols="30" rows="3"></AddModalInput>
                 <AddModalBottom>
                     <AddModalCommentsCount>
-                        250 Characters left
+                        {value} Characters left
                     </AddModalCommentsCount>
                     <AddModalSubmitBtn  type='submit'>Post Comment</AddModalSubmitBtn>
                 </AddModalBottom>

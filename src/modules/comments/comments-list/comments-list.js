@@ -10,7 +10,7 @@ function CommentsList({current}) {
                 <div className="comments__wrapper">
                     <p className="comments__count">{comment.comments ? comment.comments.length : 0} Comments</p>
                     <ul className="comments__list">
-                        {comment.comments.map(item => <CommentItem key={item.id} name={item.user.name} imgSrc={item.user.image} desc={item.content} email={`@${item.user.username}`} />)}
+                        {comment.comments.map(item => <CommentItem key={item.id} replies={item.replies ? item.replies : null} name={item.user.name} imgSrc={item.user.image} desc={item.content} email={`@${item.user.username}`} />)}
                     </ul>
                 </div>
             )
@@ -18,14 +18,13 @@ function CommentsList({current}) {
 
             return(
                 <div className="comments__wrapper">
-                    <p className="comments__count">there is no comments yet</p>
-                    
+                    <b className="comments__count">there is no comments yet</b>
                 </div>
             )
         }
     }else{
         return(
-            <p>Loading...</p>
+            <b>Loading...</b>
         )
     }
     

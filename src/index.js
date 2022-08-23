@@ -8,12 +8,15 @@ import CreateFeedbackModal from './modules/create-modal/create-modal';
 import MainEmpty from './components/main/main-empty';
 import CommentsMain from './modules/comments/main/main';
 import Window from './components/window/window';
-
+import { Provider } from 'react-redux';
+import { store } from './store/store';
     const root = ReactDOM.createRoot(document.getElementById('root'));
     root.render(
       <React.StrictMode>
     <BrowserRouter>
+      <Provider store={store}>
       <Window/>
+      </Provider>
     </BrowserRouter>
   </React.StrictMode>
 )

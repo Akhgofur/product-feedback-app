@@ -1,32 +1,34 @@
-import { useContext, useRef } from "react"
-import { Link, useNavigate, useParams } from "react-router-dom"
-import { FeedbackContext } from "../../../context/context"
+import { useRef } from "react"
+import { useNavigate, useParams } from "react-router-dom"
 import { EditFeedbackCancelBtn, EditFeedbackCategories, EditFeedbackCategory, EditFeedbackDeleteBtn, EditFeedbackForm, EditFeedbackHeading, EditFeedbackModalBottom, EditFeedbackStatusOption, EditFeedbackStatusSelect, EditFeedbackSubmitBtn, EditFeedbackTextArea, EditFeedbackTitle, EditFeedbackTitleInput, EditFeedbackTitleWarning, EditFeedbackWrapper } from "./edit-modal.style"
+import { useDispatch, useSelector } from "react-redux"
+import { deleteFeedback, editFeedback, getFeedbacks } from "../../../components/main-components/feedbacks/feedbacks-slice"
+import { getCategories } from "../../../components/main-components/feedbacks/categories-slice"
+import { useEffect } from "react"
 
 export const EditFeedbackModal = () => {
-
-    const {data, URL, categories} = useContext(FeedbackContext)
+    const dispatch = useDispatch()
     const param = useParams()
     const editTitleRef = useRef()
     const editCategoryRef = useRef()
     const editProccessRef = useRef()
     const editDescRef = useRef()
     const id = param.id
+    useEffect(() => {
+        dispatch(getCategories())
+    },[])
+    useEffect(() => {
+        dispatch(getFeedbacks())
+    },[])
+    const data = useSelector(state => state.feedbacks.feedbacks)
     const current = data.find(item => `${item.id}` === `${id}`)
     const navigate = useNavigate()
 
     const handleClickDelete = () => {
-        async function delteFeedback(){
-            const res = await fetch(`${URL}/${id}`,{
-                method: 'DELETE',
-                  headers: {
-                        'Content-type' : 'application/json'
-                      },
-            })
-        }
-        delteFeedback()
+        dispatch(deleteFeedback(id))
         navigate('/')
     }
+    const categories = useSelector(state => state.categories.categories)
 
     const handleSubmitForm = () => {
         const editedFeedback = {
@@ -35,17 +37,7 @@ export const EditFeedbackModal = () => {
             description : editDescRef.current.value,
             status: editProccessRef.current.value
         }
-
-        async function editFeedback(){
-            const res = await fetch(`${URL}/${id}`,{
-                method: 'PATCH',
-                  headers: {
-                        'Content-type' : 'application/json'
-                      },
-                      body: JSON.stringify(editedFeedback)
-            })
-        }
-        editFeedback()
+        dispatch(editFeedback({id, editedFeedback}))
         navigate('/')
     }
 

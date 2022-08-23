@@ -11,6 +11,8 @@
         margin-bottom: 20px;
     }
 }
+
+
 .feedback__vote-btn {
     display: inline-block;
     padding: 14px 9px 8px;
@@ -19,7 +21,7 @@
     border-radius: 10px;
     width: 40px;
     margin-right: 40px;
-    z-index: 11;
+    z-index: 9;
     cursor: pointer;
 }
 .feedback__vote-num {
@@ -112,4 +114,14 @@
     text-align: center;
     letter-spacing: -0.222222px;
     color: #3A4374;
+}
+
+.feedback__vote-btn[data-id] {
+    background-color: #4661E6;
+    .feedback__vote-num {
+        color: #fff;
+        &::before {
+            background-image: url(../../../../assets/img/arrow-white.svg);
+        }
+    }
 }
