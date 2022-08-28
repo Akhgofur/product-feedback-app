@@ -23,6 +23,9 @@
     margin-right: 40px;
     z-index: 9;
     cursor: pointer;
+    &:hover {
+        background-color: #CFD7FF;
+    }
 }
 .feedback__vote-num {
     font-weight: 700;

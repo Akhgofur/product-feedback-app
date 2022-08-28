@@ -10,13 +10,11 @@ import AddCommentModal from "../add-comment/add-comment.component"
 import { nanoid } from "@reduxjs/toolkit"
 import { useEffect } from "react"
 import { getFeedbacks } from "../../../components/main-components/feedbacks/feedbacks-slice"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 
 function CommentsMain() {
-
-    const {data} = useContext(FeedbackContext)
     const param = useParams()
-    
+    const data = useSelector(state => state.feedbacks.feedbacks)
     let current = data.filter(person => { 
         return `${person.id}` === `${param.id}`
     })
@@ -24,6 +22,7 @@ function CommentsMain() {
     useEffect(() => {
         dispatch(getFeedbacks())
     },[])
+
     return (
         <div className="comments">
                 {current ?( current.map(current => {

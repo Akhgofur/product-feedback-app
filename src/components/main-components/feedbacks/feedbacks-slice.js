@@ -1,9 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { URL } from "../../../context/context";
 const initialState = {
-    feedbacks:[{
-
-    }],
+    feedbacks:[],
     loading: null,
     error: null,
 }
@@ -146,13 +144,45 @@ export const getFeedbacks = createAsyncThunk(
             },
             addComent(state, action){
                 const{id, comment} = action.payload
-                let current = state.feedbacks.find(item => `${item.id}` === `${id}`)
-                if(current["comments"]) {
-                    current["comments"].push(comment)
+                let currentFeedback = state.feedbacks.find(item => `${item.id}` === `${id}`)
+                if(currentFeedback.comments) {
+                    currentFeedback.comments.push(comment)
                 }else{
-                    current["comments"] = comment
+                    currentFeedback.comments = [comment]
                 }
-            }
+            },
+            createFeedback(state, action) {
+                state.feedbacks.push(action.payload)
+            },
+            sortFeedback(state, action) {
+                state.feedbacks.sort((a, b) => {
+                    switch (action.payload) {
+                        case "1":
+                            return +b.upvotes - +a.upvotes
+                            break   
+                        case "2":
+                            return  +a.upvotes - +b.upvotes
+                            break
+                        case "3":
+                            return  b.comments.length - a.comments.length
+                            break
+                        case "4":
+                            return  a.comments.length - b.comments.length
+                            break
+                        default:
+                            return +a.upvotes - +b.upvotes
+                            break
+                    }
+                })
+            },
+            filterFeedback(state, action) {
+                if(action.payload === "All") {
+                    state.feedbacks = state.feedbacks
+                }
+                else {
+                    state.feedbacks.filter(item => `${item.category}` === `${action.payload}`)
+                }
+            },
         },
         extraReducers:{
             [getFeedbacks.fulfilled]: (state, action) => {
@@ -172,5 +202,5 @@ export const getFeedbacks = createAsyncThunk(
     })
     
     
-    export const { upVotePost, addComent } = feedbacksSlice.actions
+    export const { upVotePost, addComent, createFeedback, sortFeedback, filterFeedback } = feedbacksSlice.actions
     export default feedbacksSlice.reducer

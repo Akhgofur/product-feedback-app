@@ -5,14 +5,12 @@ import './main.scss';
 import { FeedbacksProvider } from "../../context/context";
 import { useState } from "react";
 // import {Routes, Route, Link} from 'react-router-dom';
-function Main(){
-
-    const [selected, setSelected] = useState("1")
+function Main({filter}){
     return (
         <FeedbacksProvider>
             <div className="main">
-                <MainHeader setSelected={setSelected} />
-                <FeedbacksList selected={selected} />
+                <MainHeader />
+                <FeedbacksList filter={filter}  />
             </div>
         </FeedbacksProvider>
     )

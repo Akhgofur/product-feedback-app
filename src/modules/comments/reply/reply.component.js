@@ -2,13 +2,6 @@ import { useEffect } from "react"
 import { ReplyAuthor, ReplyBtn, ReplyContent, ReplyContentHeader, ReplyDesc, ReplyIcon, ReplyIconWrapper, ReplyingTo, ReplyItem, ReplyUserEmail, ReplyUserName } from "./reply.style"
 
 export const Reply = ({content, replyingTo, img, name, username}) => {
-        useEffect(() => {
-            console.log(content,
-                replyingTo,
-                img,
-                name,
-                username);
-        }, [])
     return(
         <ReplyItem>
             <ReplyIconWrapper>

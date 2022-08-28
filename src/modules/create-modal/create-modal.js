@@ -3,7 +3,7 @@ import {Link, Navigate, useNavigate} from 'react-router-dom'
 import { useContext, useEffect, useRef, useState } from 'react'
 import { FeedbackContext } from '../../context/context'
 import { useDispatch } from 'react-redux'
-import { addFeedback } from '../../components/main-components/feedbacks/feedbacks-slice'
+import { addFeedback, createFeedback } from '../../components/main-components/feedbacks/feedbacks-slice'
 import { getCategories } from '../../components/main-components/feedbacks/categories-slice'
 import { useSelector } from 'react-redux'
 import { nanoid } from '@reduxjs/toolkit'
@@ -19,7 +19,7 @@ function CreateFeedbackModal(){
     }, [])
     
     const categories = useSelector(state => state.categories.categories)
-
+    const isLoading = useSelector(state => state.feedbacks.loading)
     
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -35,7 +35,9 @@ function CreateFeedbackModal(){
             }
             setError(false)
             dispatch(addFeedback(newFeedback))
-            navigate(-1)
+            dispatch(createFeedback(newFeedback))
+            e.target.reset()
+            navigate('/')
         }else{
             setError(!error)
         }
@@ -53,7 +55,7 @@ function CreateFeedbackModal(){
                 <h3 className="modal__heading">
                     Create New Feedback
                 </h3>
-                <form action="#" ref={createFeedbackFormRef} onSubmit={handleSubmit} className="modal__form">
+                <form action="#" isLoading={isLoading} ref={createFeedbackFormRef} onSubmit={handleSubmit} className="modal__form">
                     <h4 className="heading modal__feedback-title">
                     Feedback Title
                     </h4>

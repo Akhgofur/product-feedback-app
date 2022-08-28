@@ -27,6 +27,7 @@ function AddCommentModal({current}){
         dispatch(addComment({commentsArr, id}))
         dispatch(addComent({id, comment}))
         addCommentRef.current.value = ''
+        setValue(250)
     
     }
 

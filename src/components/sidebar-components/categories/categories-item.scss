@@ -12,10 +12,15 @@
     border-radius: 10px;
     background-color: #F2F4FF;
     display: inline-block;
+    pointer-events: none;
+    &:hover {
+        background-color: #CFD7FF;
+    }
 }
 
 .categories__item-radio {
     display: none;
+    pointer-events: none;
 }
 .categories__item-radio:checked ~ .categories__item-name{
         color: #F2F4FF;

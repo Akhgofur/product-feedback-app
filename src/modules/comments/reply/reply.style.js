@@ -51,6 +51,7 @@ export const ReplyUserEmail = styled.p`
 `
 export const ReplyBtn = styled.button` 
     display: inline-block;
+    cursor: pointer;
     padding: 4px;
     margin: 0;
     border: none;

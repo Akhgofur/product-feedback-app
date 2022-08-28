@@ -6,7 +6,7 @@ export const categoriesLink = 'https://rgergerretwe.herokuapp.com/suggestionFilt
 export const FeedbacksProvider = ({children}) => {
 const [categories, setCategories] = useState([])
  let [data, setData] = useState([])
-    useEffect(() => {
+    useEffect(() => {   
         fetch(URL)
        .then(res => res.json())
        .then(info => setData(info))
