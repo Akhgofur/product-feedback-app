@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { URL } from "../../../context/context";
 const initialState = {
     feedbacks:[],
-    loading: null,
+    status: "idle",
     error: null,
 }
 const name = 'feedbacks'
@@ -136,6 +136,15 @@ export const getFeedbacks = createAsyncThunk(
             getPosts(state) {
                 return state.feedbacks
             },
+            editPost(state, action) {
+                const {id, editedFeedback} = action.payload
+                const {title, category, description, status} = editedFeedback
+                let current = state.feedbacks.find(item => `${item.id}` === `${id}`)
+                current.title = title
+                current.category = category
+                current.description = description
+                current.status = status
+            },
             upVotePost(state, action) {
                 const {id , upvote} = action.payload
                 let current = state.feedbacks.find(item => `${item.id}` === `${id}`)
@@ -154,53 +163,44 @@ export const getFeedbacks = createAsyncThunk(
             createFeedback(state, action) {
                 state.feedbacks.push(action.payload)
             },
+            deletePost(state, action) {
+               state.feedbacks = state.feedbacks.filter(item => `${item.id}` !== `${action.payload}`)
+            },
             sortFeedback(state, action) {
                 state.feedbacks.sort((a, b) => {
                     switch (action.payload) {
                         case "1":
                             return +b.upvotes - +a.upvotes
-                            break   
                         case "2":
                             return  +a.upvotes - +b.upvotes
-                            break
                         case "3":
                             return  b.comments.length - a.comments.length
-                            break
                         case "4":
                             return  a.comments.length - b.comments.length
-                            break
                         default:
                             return +a.upvotes - +b.upvotes
-                            break
                     }
                 })
             },
-            filterFeedback(state, action) {
-                if(action.payload === "All") {
-                    state.feedbacks = state.feedbacks
-                }
-                else {
-                    state.feedbacks.filter(item => `${item.category}` === `${action.payload}`)
-                }
-            },
+            
         },
         extraReducers:{
-            [getFeedbacks.fulfilled]: (state, action) => {
-                state.error = false
-                state.loading = false
-                state.feedbacks = action.payload
-            },
             [getFeedbacks.rejected]: (state, action) => {
                 state.loading = false
                 state.error = action.payload
-    
+                
             },
             [getFeedbacks.pending]: (state, action) => {
-                state.loading = true
+                state.status = "loading"
+            },
+            [getFeedbacks.fulfilled]: (state, action) => {
+                state.error = false
+                state.status = "success"
+                state.feedbacks = action.payload
             },
         }
     })
     
     
-    export const { upVotePost, addComent, createFeedback, sortFeedback, filterFeedback } = feedbacksSlice.actions
+    export const { upVotePost, addComent, createFeedback, sortFeedback, editPost, deletePost } = feedbacksSlice.actions
     export default feedbacksSlice.reducer

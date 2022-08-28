@@ -1,6 +1,5 @@
 import './header.scss'
 import {Link} from 'react-router-dom'
-import { useRef } from 'react'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { sortFeedback } from '../feedbacks/feedbacks-slice'
@@ -27,7 +26,6 @@ function MainHeader(){
             name:'Least Comments',
         }
     ]
-    let selectRef = useRef("1")
     const [selected, setSelected] = useState("1")
     const dispatch = useDispatch()
     dispatch(sortFeedback(selected))
@@ -35,7 +33,7 @@ function MainHeader(){
 
     return(
         <header className="main-header">
-            <img className="main-header__img" src="../src/assets/img/bulb.svg" width={24} height={24}/>
+            <img className="main-header__img" alt='logo' src="../src/assets/img/bulb.svg" width={24} height={24}/>
             <p className='main-header__heading'>{data.length} Suggestions</p>
             <p className='main-header__select-title'>Sort by : </p>
             <CustomSelect items={sorts} setSelected={setSelected} />

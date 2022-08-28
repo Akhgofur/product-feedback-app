@@ -2,9 +2,8 @@ import { useRef } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { EditFeedbackCancelBtn, EditFeedbackCategories, EditFeedbackCategory, EditFeedbackDeleteBtn, EditFeedbackForm, EditFeedbackHeading, EditFeedbackModalBottom, EditFeedbackStatusOption, EditFeedbackStatusSelect, EditFeedbackSubmitBtn, EditFeedbackTextArea, EditFeedbackTitle, EditFeedbackTitleInput, EditFeedbackTitleWarning, EditFeedbackWrapper } from "./edit-modal.style"
 import { useDispatch, useSelector } from "react-redux"
-import { deleteFeedback, editFeedback, getFeedbacks } from "../../../components/main-components/feedbacks/feedbacks-slice"
+import { deleteFeedback, deletePost, editFeedback, editPost, getFeedbacks } from "../../../components/main-components/feedbacks/feedbacks-slice"
 import { getCategories } from "../../../components/main-components/feedbacks/categories-slice"
-import { useEffect } from "react"
 
 export const EditFeedbackModal = () => {
     const dispatch = useDispatch()
@@ -14,18 +13,18 @@ export const EditFeedbackModal = () => {
     const editProccessRef = useRef()
     const editDescRef = useRef()
     const id = param.id
-    useEffect(() => {
+    const feedbackStatus = useSelector(state => state.feedbacks.status)
+    if(feedbackStatus === "idle") {
         dispatch(getCategories())
-    },[])
-    useEffect(() => {
         dispatch(getFeedbacks())
-    },[])
+    }
     const data = useSelector(state => state.feedbacks.feedbacks)
     const current = data.find(item => `${item.id}` === `${id}`)
     const navigate = useNavigate()
 
     const handleClickDelete = () => {
         dispatch(deleteFeedback(id))
+        dispatch(deletePost(id))
         navigate('/')
     }
     const categories = useSelector(state => state.categories.categories)
@@ -38,6 +37,7 @@ export const EditFeedbackModal = () => {
             status: editProccessRef.current.value
         }
         dispatch(editFeedback({id, editedFeedback}))
+        dispatch(editPost({id, editedFeedback}))
         navigate('/')
     }
 

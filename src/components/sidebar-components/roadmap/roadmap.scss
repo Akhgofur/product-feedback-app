@@ -34,7 +34,7 @@
 .roadmap__item {
     display: flex;
     align-items: center;
-    justify-content: start;
+    justify-content: flex-start;
     &:not(:last-child) {
         margin-bottom: 8px;
     }

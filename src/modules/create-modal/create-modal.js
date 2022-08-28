@@ -1,7 +1,6 @@
 import './create-modal.scss'
-import {Link, Navigate, useNavigate} from 'react-router-dom'
-import { useContext, useEffect, useRef, useState } from 'react'
-import { FeedbackContext } from '../../context/context'
+import {Link, useNavigate} from 'react-router-dom'
+import {  useRef, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { addFeedback, createFeedback } from '../../components/main-components/feedbacks/feedbacks-slice'
 import { getCategories } from '../../components/main-components/feedbacks/categories-slice'
@@ -14,12 +13,13 @@ function CreateFeedbackModal(){
     const feedbackRef = useRef('')
     const createFeedbackFormRef = useRef()
     
-    useEffect(() => {
+    const dispatch = useDispatch()
+    const feedbacksStatus = useSelector(state => state.feedbacks.status)
+    if(feedbacksStatus === "idle") {
         dispatch(getCategories())
-    }, [])
+    }
     
     const categories = useSelector(state => state.categories.categories)
-    const isLoading = useSelector(state => state.feedbacks.loading)
     
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -31,6 +31,7 @@ function CreateFeedbackModal(){
                 isUpvoted : false,
                 category : categoryRef.current.value,
                 description : feedbackRef.current.value,
+                status: "suggestion",
                 comments : []
             }
             setError(false)
@@ -42,7 +43,6 @@ function CreateFeedbackModal(){
             setError(!error)
         }
     }
-    const dispatch = useDispatch()
     const [error, setError] = useState(false)
     let navigate = useNavigate()
 
@@ -55,7 +55,7 @@ function CreateFeedbackModal(){
                 <h3 className="modal__heading">
                     Create New Feedback
                 </h3>
-                <form action="#" isLoading={isLoading} ref={createFeedbackFormRef} onSubmit={handleSubmit} className="modal__form">
+                <form action="#" ref={createFeedbackFormRef} onSubmit={handleSubmit} className="modal__form">
                     <h4 className="heading modal__feedback-title">
                     Feedback Title
                     </h4>

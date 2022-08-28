@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Dropdown, DropdownBtn, DropdownHeader, DropdownImg, DropdownItem, DropdownList } from "./custom-select.style"
+import { Dropdown, DropdownBtn, DropdownHeader, DropdownItem, DropdownList } from "./custom-select.style"
 import strelka from "../../../../assets/img/strelka-select.svg"
 
 export const CustomSelect = ({items, setSelected}) => {
@@ -20,7 +20,7 @@ export const CustomSelect = ({items, setSelected}) => {
                 <DropdownBtn  onClick={() => setOpen(!open)}>
                     {active.name}
                 </DropdownBtn>
-                <img className={open ? "dropdown__img--open" : 'dropdown__img'} src={strelka} width={8} height={4} />
+                <img className={open ? "dropdown__img--open" : 'dropdown__img'} alt={"strelka"} src={strelka} width={8} height={4} />
             </DropdownHeader>
             {
                 open && (<DropdownList onClick={handleListClick}>

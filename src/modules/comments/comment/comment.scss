@@ -1,6 +1,8 @@
 .comments__item {
     &:not(:last-child) {
         border-bottom: 1px solid #8C92B3;
+        padding-bottom: 32px;
+        
     }
     &:not(:first-child) {
         padding-top: 32px;
@@ -8,9 +10,8 @@
 }
 .comment {
     display: flex;
-    align-items: start;
-    justify-content: start;
-    padding-bottom: 32px;
+    align-items: flex-start;
+    justify-content: flex-start;
 }
 .comment__img {
     width: 40px;

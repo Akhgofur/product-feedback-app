@@ -1,4 +1,5 @@
 import './roadmap.scss'
+import {Link} from "react-router-dom"
 function Roadmap() {
     return (
         <div className='roadmap'>
@@ -6,7 +7,7 @@ function Roadmap() {
                 <p className='roadmap__heading'>
                 Roadmap
                 </p>
-                <a className='roadmap__link' href='#'>View</a>
+                <Link className='roadmap__link' to={"/"}>View</Link>
             </div>
             <ol className='roadmap__list'>
                 <li className='roadmap__item'>

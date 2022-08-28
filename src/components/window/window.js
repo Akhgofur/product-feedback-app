@@ -1,14 +1,9 @@
-import React, { createContext, useEffect, useState } from "react";
+import React from "react";
 import { Route, Routes } from "react-router-dom";
-import { FeedbacksProvider } from "../../context/context";
 import Comments from "../../modules/comments/comments";
-import CommentsMain from "../../modules/comments/main/main";
-import CreateFeedbackModal from "../../modules/create-modal/create-modal";
 import { Modal } from "../../modules/create-modal/modal";
 import { EditModalWrapper } from "../../modules/edit-modal/edit-modal-wrapper";
-import { EditFeedbackModal } from "../../modules/edit-modal/edit-modal/edit-modal.component";
 import App from "../app/App";
-import Feedback from "../main-components/feedbacks/feedback/feedback";
 import MainEmpty from "../main/main-empty";
 
 function Window(){  

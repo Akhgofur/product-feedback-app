@@ -4,25 +4,24 @@ import Nav from "../nav/nav"
 import './main.scss'
 import {useParams} from 'react-router-dom'
 import Feedback from "../../../components/main-components/feedbacks/feedback/feedback"
-import { useContext } from "react"
-import { FeedbackContext } from "../../../context/context"
 import AddCommentModal from "../add-comment/add-comment.component"
 import { nanoid } from "@reduxjs/toolkit"
-import { useEffect } from "react"
 import { getFeedbacks } from "../../../components/main-components/feedbacks/feedbacks-slice"
 import { useDispatch, useSelector } from "react-redux"
 
 function CommentsMain() {
     const param = useParams()
     const data = useSelector(state => state.feedbacks.feedbacks)
+    const feedbacksStatus = useSelector(state => state.feedbacks.status)
     let current = data.filter(person => { 
         return `${person.id}` === `${param.id}`
     })
     const dispatch = useDispatch()
-    useEffect(() => {
-        dispatch(getFeedbacks())
-    },[])
 
+    if(feedbacksStatus === "idle") {
+        dispatch(getFeedbacks())
+    }
+    
     return (
         <div className="comments">
                 {current ?( current.map(current => {

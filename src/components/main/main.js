@@ -1,16 +1,25 @@
 import FeedbacksList from "../main-components/feedbacks/feedbacks-list";
 import MainHeader from "../main-components/header/header";
-import { Link } from "react-router-dom";
 import './main.scss';
 import { FeedbacksProvider } from "../../context/context";
-import { useState } from "react";
-// import {Routes, Route, Link} from 'react-router-dom';
+import { useSelector, useDispatch } from "react-redux";
+import { getFeedbacks } from "../main-components/feedbacks/feedbacks-slice";
+
 function Main({filter}){
+    const dispatch = useDispatch()
+    const feedbackStatus = useSelector(state => state.feedbacks.status)
+    if(feedbackStatus === "idle") {
+            dispatch(getFeedbacks())
+    }
+    const data = useSelector(state => state.feedbacks.feedbacks)
+    
     return (
         <FeedbacksProvider>
             <div className="main">
                 <MainHeader />
-                <FeedbacksList filter={filter}  />
+                {
+                    feedbackStatus === "loading" ? <b>Loading...</b> : <FeedbacksList data={data} filter={filter}  />
+                }
             </div>
         </FeedbacksProvider>
     )

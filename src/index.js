@@ -1,12 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './components/app/App';
 import { BrowserRouter } from 'react-router-dom';
-import {Routes, Route, Link} from 'react-router-dom'
-import CreateFeedbackModal from './modules/create-modal/create-modal';
-import MainEmpty from './components/main/main-empty';
-import CommentsMain from './modules/comments/main/main';
 import Window from './components/window/window';
 import { Provider } from 'react-redux';
 import { store } from './store/store';

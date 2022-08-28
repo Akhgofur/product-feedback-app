@@ -1,4 +1,3 @@
-import AddCommentModal from '../add-comment/add-comment.component'
 import CommentItem from '../comment/comment'
 import './comments-list.scss'
 function CommentsList({current}) {
