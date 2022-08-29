@@ -19,10 +19,11 @@
     border: none;
     background-color: #F2F4FE;
     border-radius: 10px;
-    width: 40px;
+    min-width: 40px;
     margin-right: 40px;
     z-index: 9;
     cursor: pointer;
+    flex-shrink: 0;
     &:hover {
         background-color: #CFD7FF;
     }
@@ -35,17 +36,14 @@
     color: #3A4374;
     margin: 0;
     padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
     &::before {
         display: block;
-        content: '';
-        width: 10px;
-        height: 4px;
-        padding: 3px;
-        margin-right: auto;
-        margin-left: auto;
+        content: url(../../../../assets/img/strelka.svg);
         margin-bottom: 8px;
-        background-image: url(../../../../assets/img/strelka.svg);
-        background-position: center;
         
     }
 }
@@ -124,7 +122,29 @@
     .feedback__vote-num {
         color: #fff;
         &::before {
-            background-image: url(../../../../assets/img/arrow-white.svg);
+            content: url(../../../../assets/img/arrow-white.svg);
+        }
+    }
+}
+@media only screen and (max-width: 500px) {
+    .feedback {
+        flex-direction: column-reverse;
+    }
+    .feedback__content {
+        margin-bottom: 10px;
+    }
+    .feedback__content-wrapper {
+        align-items: flex-end;
+    }
+    .feedback__vote-btn {
+        margin-right: 0;
+        padding: 6px 13px;
+    }
+    .feedback__vote-num {
+        flex-direction: row;
+        &::before {
+            margin-right: 10px;
+            margin-bottom: 0;
         }
     }
 }

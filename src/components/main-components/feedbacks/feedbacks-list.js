@@ -1,4 +1,3 @@
-
 import Feedback from "./feedback/feedback";
 import './feedbacks-list.scss'
 import { nanoid } from "@reduxjs/toolkit";
@@ -7,7 +6,7 @@ import { nanoid } from "@reduxjs/toolkit";
 function FeedbacksList({filter, data}){
     return (
         
-        <>
+        <ul className="feedbacks">
          {/* eslint-disable-next-line  */}
         {data.length > 0 ? (data.map(item => {
             if(filter === "All"){
@@ -18,7 +17,7 @@ function FeedbacksList({filter, data}){
             }
         })
         ) : <h2>empty</h2>}
-        </>
+        </ul>
     )
 }
 export default FeedbacksList;

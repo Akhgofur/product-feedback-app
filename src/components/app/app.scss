@@ -6,3 +6,13 @@
     justify-content: space-between;
     padding-top: 94px;
 }
+@media only screen and (max-width: 915px) {
+    .main-wrapper {
+        flex-direction: column;
+    }
+}
+@media only screen and (max-width: 630px) {
+    .main-wrapper {
+        padding: 0;
+    }
+}

@@ -4,6 +4,9 @@
     border-radius: 10px;
     width: 100%;
     margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 .sidebar__header-heading {
     font-weight: 700;
@@ -22,4 +25,20 @@
     opacity: 0.75;
     padding: 0;
     margin: 0;
+}
+@media only screen and (max-width: 915px) {
+    .sidebar__header {
+        margin-bottom: 0;
+        margin-right: 10px;
+        padding-top: 70px;
+    }
+}
+@media only screen and (max-width: 630px) {
+   .sidebar__header {
+    flex-grow: 1;
+    padding: 20px;
+    margin-right: 0;
+    width: 100%;
+    border-radius: 0;
+   }
 }

@@ -63,8 +63,8 @@ export const EditFeedbackModal = () => {
                     </EditFeedbackTitleWarning>
                     <EditFeedbackCategories ref={editCategoryRef}>
                         {categories && categories.map(item => {
-                            if(`${item.name}` === `${current.category}`){
-                                return (<EditFeedbackCategory  key={item.id} selected={true} value={item.name}>{item.name}</EditFeedbackCategory>)
+                            if(`${item.name.toLowerCase()}` === `${current.category.toLowerCase()}`){
+                                return (<EditFeedbackCategory  key={item.id} value={item.name} defaultValue={true} >{item.name}</EditFeedbackCategory>)
                             }else{
                                 return (<EditFeedbackCategory key={item.id} value={item.name}>{item.name}</EditFeedbackCategory>)
                             }

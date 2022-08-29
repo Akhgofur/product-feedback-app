@@ -6,6 +6,7 @@
     align-items: center;
     justify-content: flex-start;
     margin-bottom: 24px;
+    position: relative;
 }
 .main-header__img {
     content: url(../../../assets/img/bulb.svg);
@@ -29,17 +30,6 @@
     color: #F2F4FE;
     margin: 0;
     padding: 0;
-}
-.main-header__select {
-    background-color: transparent;
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 20px;
-    padding-right: 9px;
-    color: #F2F4FE;
-    letter-spacing: -0.25px;
-    border: none;
-    margin-right: auto;
 }
 .main-header__btn {
     text-decoration: none;
@@ -67,5 +57,26 @@
     &::after {
         content: url(../../../assets/img/ptichka.svg);
         display: block;
+    }
+}
+@media only screen and (max-width: 630px) {
+    .main-header__img {
+        display: none;
+    }
+    .main-header__heading {
+        display: none;
+    }
+    .main-header__btn {
+        padding: 10px 16px;
+        line-height: 19px;
+        font-size: 13px;
+    }
+    .main-header {
+        padding: 14px 16px;
+        border-radius: 0;
+    }
+    .main-header__select-title {
+        line-height: 19px;
+        font-size: 13px;
     }
 }

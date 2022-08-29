@@ -1,11 +1,8 @@
 import styled from "styled-components"
 
 export const Dropdown = styled.div` 
-    position: relative;
     z-index: 10;
     margin-right: auto;
-    max-width: 255px;
-    width: 100%;
 `
 export const DropdownHeader = styled.header` 
     display: flex;
@@ -21,11 +18,14 @@ export const DropdownBtn = styled.button`
     font-weight: 700;
     font-size: 14px;
     line-height: 20px;
-    padding-right: 9px;
     color: #F2F4FE;
     letter-spacing: -0.25px;
     border: none;
     margin-right: 9px;
+    @media (max-width: 630px) {
+        font-size: 13px;
+        line-height: 19px;
+    }
 `
 export const DropdownList = styled.ul`
     margin: 0;
@@ -33,14 +33,18 @@ export const DropdownList = styled.ul`
     list-style: none;
     position: absolute;
     z-index: 10;
-    left: -50px;
-    top: calc(100% + 36px);
+    left: 50%;
+    transform: translateX(-70%);
+    top: calc(100% + 16px);
     border-radius: 10px;
     background-color: #fff;
     user-select:none;
     width: 100%;
     max-width: 255px;
     box-shadow: 0px 10px 40px -7px rgba(55, 63, 104, 0.350492);
+    @media (max-width: 630px) {
+        transform: translateX(-50%);
+}
 `
 export const DropdownItem = styled.li`
     padding: 12px 24px;
