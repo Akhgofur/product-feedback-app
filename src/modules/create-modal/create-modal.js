@@ -3,9 +3,9 @@ import {Link, useNavigate} from 'react-router-dom'
 import {  useRef, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { addFeedback, createFeedback } from '../../components/main-components/feedbacks/feedbacks-slice'
-import { getCategories } from '../../components/main-components/feedbacks/categories-slice'
-import { useSelector } from 'react-redux'
 import { nanoid } from '@reduxjs/toolkit'
+import { useContext } from 'react'
+import { FeedbackContext } from '../../context/context'
 
 function CreateFeedbackModal(){
     const nameRef = useRef('')
@@ -14,12 +14,8 @@ function CreateFeedbackModal(){
     const createFeedbackFormRef = useRef()
     
     const dispatch = useDispatch()
-    const feedbacksStatus = useSelector(state => state.feedbacks.status)
-    if(feedbacksStatus === "idle") {
-        dispatch(getCategories())
-    }
     
-    const categories = useSelector(state => state.categories.categories)
+    const {categories} = useContext(FeedbackContext)
     
     const handleSubmit = (e) => {
         e.preventDefault()

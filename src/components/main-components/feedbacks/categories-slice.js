@@ -4,7 +4,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit"
 
 const initialState = {
     categories:[],
-    loading: null,
+    status: "idle",
     error: null,
 }
 export const getCategories = createAsyncThunk(
@@ -32,7 +32,7 @@ const categoriesSlice = createSlice({
     extraReducers: {
         [getCategories.fulfilled]: (state, action) => {
             state.error = false
-            state.loading = false
+            state.status = "loading"
             state.categories = action.payload
         },
     }

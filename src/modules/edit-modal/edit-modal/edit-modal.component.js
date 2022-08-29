@@ -3,7 +3,8 @@ import { useNavigate, useParams } from "react-router-dom"
 import { EditFeedbackCancelBtn, EditFeedbackCategories, EditFeedbackCategory, EditFeedbackDeleteBtn, EditFeedbackForm, EditFeedbackHeading, EditFeedbackModalBottom, EditFeedbackStatusOption, EditFeedbackStatusSelect, EditFeedbackSubmitBtn, EditFeedbackTextArea, EditFeedbackTitle, EditFeedbackTitleInput, EditFeedbackTitleWarning, EditFeedbackWrapper } from "./edit-modal.style"
 import { useDispatch, useSelector } from "react-redux"
 import { deleteFeedback, deletePost, editFeedback, editPost, getFeedbacks } from "../../../components/main-components/feedbacks/feedbacks-slice"
-import { getCategories } from "../../../components/main-components/feedbacks/categories-slice"
+import { useContext } from "react"
+import { FeedbackContext } from "../../../context/context"
 
 export const EditFeedbackModal = () => {
     const dispatch = useDispatch()
@@ -15,7 +16,6 @@ export const EditFeedbackModal = () => {
     const id = param.id
     const feedbackStatus = useSelector(state => state.feedbacks.status)
     if(feedbackStatus === "idle") {
-        dispatch(getCategories())
         dispatch(getFeedbacks())
     }
     const data = useSelector(state => state.feedbacks.feedbacks)
@@ -27,7 +27,7 @@ export const EditFeedbackModal = () => {
         dispatch(deletePost(id))
         navigate('/')
     }
-    const categories = useSelector(state => state.categories.categories)
+    const {categories} = useContext(FeedbackContext)
 
     const handleSubmitForm = () => {
         const editedFeedback = {
