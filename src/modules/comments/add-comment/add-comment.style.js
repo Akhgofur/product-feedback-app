@@ -2,15 +2,16 @@ import styled from "styled-components";
 
 
 export const AddModal = styled.div`
-    max-width: 730px;
     width: 100%;
-    flex-shrink: 0;
-    background-color: #fff;
-    border-radius: 10px;
-    padding: 24px 32px 32px 34px;
+    max-width: 730px;
     position: fixed;
     bottom: 0;
+    left: 50%;
     z-index: 100;
+    transform: translateX(-50%);
+    padding: 24px 32px 32px 34px;
+    background-color: #fff;
+    border-radius: 10px;
 `
 export const AddModalForm = styled.form`
     width: 100%;

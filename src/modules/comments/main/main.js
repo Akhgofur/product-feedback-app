@@ -8,6 +8,8 @@ import AddCommentModal from "../add-comment/add-comment.component"
 import { nanoid } from "@reduxjs/toolkit"
 import { getFeedbacks } from "../../../components/main-components/feedbacks/feedbacks-slice"
 import { useDispatch, useSelector } from "react-redux"
+import { useRef } from "react"
+import { useState } from "react"
 
 function CommentsMain() {
     const param = useParams()
@@ -16,12 +18,13 @@ function CommentsMain() {
     let current = data.filter(person => { 
         return `${person.id}` === `${param.id}`
     })
+    const [repliedUser, setRepliedUser] = useState({})
     const dispatch = useDispatch()
 
     if(feedbacksStatus === "idle") {
         dispatch(getFeedbacks())
     }
-    
+    const addCommentRef = useRef('')
     return (
         <div className="comments">
                 {current ?( current.map(current => {
@@ -33,8 +36,8 @@ function CommentsMain() {
                     )
                 }
                 )) : <b>Loading...</b>}
-                <CommentsList current={current} />
-                <AddCommentModal current={current}/>
+                <CommentsList setRepliedUser={setRepliedUser} current={current} addCommentRef={addCommentRef} />
+                <AddCommentModal  id={param.id} repliedUser={repliedUser} setRepliedUser={setRepliedUser} addCommentRef={addCommentRef} current={current}/>
         </div>
     )
 }

@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, nanoid } from "@reduxjs/toolkit";
 import { URL } from "../../../context/context";
 const initialState = {
     feedbacks:[],
@@ -85,6 +85,56 @@ export const getFeedbacks = createAsyncThunk(
                     }
                 }
                 )
+                export const replyComment = async (id, comments) => {
+                        
+                            const res = await fetch(`${URL}/${id}`,{
+                                method: 'PATCH',
+                                  headers: {
+                                        'Content-type' : 'application/json'
+                                      },
+                                      body: JSON.stringify(
+                                            {
+                                                comments
+                                            }
+                                            )
+                                        })
+                        const data = await res.data;
+                        return data;
+                  };
+                export const addReplyComment = createAsyncThunk(
+                    'feedbacks/addReplyComment',
+                    async function({ id, comment, repliedUser, repliedUserId }, {getState, dispatch} ) {
+
+                        const commentedProduct = getState().feedbacks.feedbacks.find(item => `${item.id}` === id)
+                        const repliedIndex = commentedProduct.comments?.findIndex(coment => `${coment.id}` === `${repliedUserId}`)
+                        if(repliedIndex !== -1) {
+                            const createdComment = {
+                                content: comment.replace("@" + repliedUser, "").trim(),
+                                id: nanoid(),
+                                replyingTo: repliedUser,
+                                user: {
+                                  image:
+                                    "https://i2.wp.com/vdostavka.ru/wp-content/uploads/2019/05/no-avatar.png?ssl=1",
+                                  name: "You",
+                                  username: "unnamed",
+                                },
+                            }
+                            const clonedComment = JSON.parse(JSON.stringify(commentedProduct.comments[repliedIndex]))
+                            clonedComment["replies"] ? 
+                            clonedComment["replies"].push(createdComment) : (clonedComment['replies'] = [createdComment])
+
+                            const withNewComment = [
+                                ...commentedProduct.comments.slice(0, repliedIndex),
+                                clonedComment,
+                                ...commentedProduct.comments.slice(repliedIndex + 1)
+                            ]
+
+                            dispatch(replyNewComment({withNewComment,id}))
+                            replyComment(id, withNewComment)
+                        }
+                        
+                    }
+                    )
             export const deleteFeedback = createAsyncThunk(
                 'feedbacks/deleteFeedback',
                 async function(id, {rejectWithValue} ) {
@@ -166,6 +216,11 @@ export const getFeedbacks = createAsyncThunk(
             deletePost(state, action) {
                state.feedbacks = state.feedbacks.filter(item => `${item.id}` !== `${action.payload}`)
             },
+            replyNewComment(state, action) {
+                const {id, withNewComment} = action.payload
+                const currentFeedback = state.feedbacks.find(item => `${item.id}` === `${id}`)
+                currentFeedback.comments = withNewComment
+            },
             sortFeedback(state, action) {
                 state.feedbacks.sort((a, b) => {
                     switch (action.payload) {
@@ -202,5 +257,5 @@ export const getFeedbacks = createAsyncThunk(
     })
     
     
-    export const { upVotePost, addComent, createFeedback, sortFeedback, editPost, deletePost } = feedbacksSlice.actions
+    export const { upVotePost, addComent, createFeedback, sortFeedback, editPost, deletePost, replyNewComment } = feedbacksSlice.actions
     export default feedbacksSlice.reducer

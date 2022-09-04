@@ -1,6 +1,6 @@
 import { ReplyAuthor, ReplyBtn, ReplyContent, ReplyContentHeader, ReplyDesc, ReplyIcon, ReplyIconWrapper, ReplyingTo, ReplyItem, ReplyUserEmail, ReplyUserName } from "./reply.style"
 
-export const Reply = ({content, replyingTo, img, name, username}) => {
+export const Reply = ({content, replyingTo, img, name, username, id}) => {
     return(
         <ReplyItem>
             <ReplyIconWrapper>
@@ -13,18 +13,18 @@ export const Reply = ({content, replyingTo, img, name, username}) => {
                             {name}
                         </ReplyUserName>
                         <ReplyUserEmail>
-                            {username}
+                            @{username}
                         </ReplyUserEmail>
                     </ReplyAuthor>
-                    <ReplyBtn>
+                    <ReplyBtn className="reply__btn" data-user={username}>
                         Reply
                     </ReplyBtn>
                 </ReplyContentHeader>
                 <ReplyDesc>
                     <ReplyingTo>
-                        @{replyingTo}
+                        @{replyingTo + ` `}
                     </ReplyingTo>
-                    {content}
+                     {content}
                 </ReplyDesc>
             </ReplyContent>
         </ReplyItem>
