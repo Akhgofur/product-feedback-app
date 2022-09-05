@@ -5,7 +5,7 @@ import { FeedbacksProvider } from "../../context/context";
 import { useSelector, useDispatch } from "react-redux";
 import { getFeedbacks } from "../main-components/feedbacks/feedbacks-slice";
 
-function Main({filter}){
+function Main({filter, open}){
     const dispatch = useDispatch()
     const feedbackStatus = useSelector(state => state.feedbacks.status)
     if(feedbackStatus === "idle") {
@@ -15,7 +15,9 @@ function Main({filter}){
     
     return (
         <FeedbacksProvider>
-            <div className="main">
+            <div className={open ? "main main--grey" : "main"}>
+                <div className="main__grey-wrapper">
+                </div>
                 <MainHeader />
                 {
                     feedbackStatus === "loading" ? <div className="wrapper"><b className="loading">Loading...</b></div> : <FeedbacksList data={data} filter={filter}  />

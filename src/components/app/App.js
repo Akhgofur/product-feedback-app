@@ -4,11 +4,13 @@ import './app.scss';
 import { useState } from 'react';
 function App() {
     const [filter, setFilter] = useState("All")
+    const [open, setOpen] = useState(false)
+
   return(
 
     <div className='main-wrapper container'>
-      <Sidebar setFilter={setFilter} />
-      <Main filter={filter} />
+      <Sidebar open={open} setOpen={setOpen} setFilter={setFilter} />
+      <Main open={open} filter={filter} />
     </div>
   )
 }
