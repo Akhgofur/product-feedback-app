@@ -13,10 +13,37 @@
         max-width: 825px;
         align-items: stretch;
         margin-bottom: 15px;
+    } 
+    .sidebar__bottom {
+        display: flex;
+        align-items: stretch;
+        justify-content: flex-start;
+        flex-grow: 1;
+        max-width: 580px;
+        width: 100%;
+        flex-grow: 1;
     }
 }
 @media only screen and (max-width: 630px) {
     .sidebar {
      width: 100%;
+     margin-bottom: 0;
+    }
+    .sidebar__bottom {
+        display: none;
+        position: fixed;
+        flex-direction: column;
+        height: 100vh;
+        z-index: 1000;
+        max-width: 280px;
+        right: 0;
+        top: 91px;
+        padding: 24px;
+        background-color: #F7F8FD;
+    }
+    .sidebar--open {
+        .sidebar__bottom {
+            display: block;
+        }
     }
  }

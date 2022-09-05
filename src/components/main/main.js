@@ -18,7 +18,7 @@ function Main({filter}){
             <div className="main">
                 <MainHeader />
                 {
-                    feedbackStatus === "loading" ? <b>Loading...</b> : <FeedbacksList data={data} filter={filter}  />
+                    feedbackStatus === "loading" ? <div className="wrapper"><b className="loading">Loading...</b></div> : <FeedbacksList data={data} filter={filter}  />
                 }
             </div>
         </FeedbacksProvider>

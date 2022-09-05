@@ -9,6 +9,8 @@
 @media only screen and (max-width: 915px) {
     .main-wrapper {
         flex-direction: column;
+        align-items: stretch;
+        justify-content: stretch;
     }
 }
 @media only screen and (max-width: 630px) {
