@@ -55,7 +55,8 @@ function AddCommentModal({current, addCommentRef, repliedUser, setRepliedUser, i
                   repliedUserId: repliedUser.id,
                 })
               );
-              setComment("");
+              setComment("")
+              setValue(250)
         }
     }
     useEffect(() => {
