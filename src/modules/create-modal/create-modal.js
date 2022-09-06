@@ -74,7 +74,7 @@ function CreateFeedbackModal(){
                     </p>
                     <textarea cols="30" rows="3" ref={feedbackRef} className="input modal__feedback-desc-textarea"></textarea>
                     <p className={error ? "heading error-text error-text-open" : "heading error-text"} >Please type something and submit</p>
-                    <div className="modal_buttons">
+                    <div className="modal__buttons">
                         <Link to={'/'} type='button' className="modal__cancel-btn">Cancel</Link>
                         <button type='submit' className="modal__submit-btn">Add Feedback</button>
                     </div>

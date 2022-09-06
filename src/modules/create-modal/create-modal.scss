@@ -96,7 +96,7 @@
     margin-bottom: 32px;
 }
 
-.modal_buttons {
+.modal__buttons {
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -141,14 +141,18 @@
 
 @media screen and (max-width:550px) {
     .modal {
-        padding-right: 20px;
-        padding-left: 20px;
+        padding-right: 24px;
+        padding-left: 24px;
+    }
+    .modal__buttons {
+        flex-direction: column-reverse;
+        align-items: stretch;
+        text-align: center;
     }
     .modal__cancel-btn {
-        padding: 10px 20px;    
+        margin-right: 0;
     }
-
     .modal__submit-btn {
-        padding: 10px 20px;
+        margin-bottom: 16px;
     }
 }

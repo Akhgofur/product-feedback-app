@@ -20,3 +20,8 @@
     margin: 0;
     padding-top: 28px;
 }
+@media screen and (max-width: 550px) {
+    .comments__wrapper {
+        padding: 24px;
+    }
+}

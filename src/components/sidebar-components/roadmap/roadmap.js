@@ -7,7 +7,7 @@ function Roadmap() {
                 <p className='roadmap__heading'>
                 Roadmap
                 </p>
-                <Link className='roadmap__link' to={"/"}>View</Link>
+                <Link className='roadmap__link' to={"/roadmap"}>View</Link>
             </div>
             <ol className='roadmap__list'>
                 <li className='roadmap__item'>

@@ -66,3 +66,8 @@
     line-height: 22px;
     color: #647196;
 }
+@media screen and  (max-width: 550px) {
+    .comment__img {
+        margin-right: 16px;
+    }
+}

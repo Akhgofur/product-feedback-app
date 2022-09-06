@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Comments from "../../modules/comments/comments";
 import { Modal } from "../../modules/create-modal/modal";
 import { EditModalWrapper } from "../../modules/edit-modal/edit-modal-wrapper";
+import { RoadmapPage } from "../../modules/roadmap/roadmap.component";
 import App from "../app/App";
 import MainEmpty from "../main/main-empty";
 
@@ -16,6 +17,7 @@ function Window(){
                 <Route path='/create' element={<Modal/>}></Route>
                 <Route path='/empty' element={<MainEmpty/>} />
                 <Route path="/edit-feedback/:id" element={<EditModalWrapper/>} />
+                <Route path="/roadmap" element={<RoadmapPage/>} />
                 
             
         </Routes>

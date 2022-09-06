@@ -92,7 +92,7 @@ export const EditFeedbackModal = () => {
                     <EditFeedbackModalBottom>
                         <EditFeedbackDeleteBtn onClick={handleClickDelete} type="button">Delete</EditFeedbackDeleteBtn>
                         <EditFeedbackCancelBtn to={'/'}>Cancel</EditFeedbackCancelBtn>
-                        <EditFeedbackSubmitBtn type="submit">Add Feedback</EditFeedbackSubmitBtn>
+                        <EditFeedbackSubmitBtn type="submit">Save changes</EditFeedbackSubmitBtn>
                     </EditFeedbackModalBottom>
                 </EditFeedbackForm>
             </EditFeedbackWrapper>

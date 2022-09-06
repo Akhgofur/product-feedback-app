@@ -20,6 +20,9 @@ export const ReplyIcon = styled.img`
     height: 40px;
     border-radius: 50%;
     margin-right: 32px;
+    @media (max-width:550px) {
+        margin-right: 16px;
+    }
 `
 export const ReplyContent = styled.div` 
     flex-grow: 1;

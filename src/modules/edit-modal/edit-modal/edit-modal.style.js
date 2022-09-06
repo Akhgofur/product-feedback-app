@@ -13,8 +13,8 @@ export const EditFeedbackWrapper = styled.div`
     padding: 52px 42px 40px;
     position: relative;
     @media (max-width:550px) {
-        padding-right: 20px;
-        padding-left: 20px;
+        padding-right: 24px;
+        padding-left: 24px;
     }
 `
 export const EditFeedbackHeading = styled.h3`
@@ -117,6 +117,11 @@ export const EditFeedbackModalBottom = styled.div`
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    @media (max-width:550px) {
+        flex-direction: column-reverse;
+        align-items: stretch;
+        text-align: center;
+    }
 `
 export const EditFeedbackDeleteBtn = styled.button`
     margin-right: auto;
@@ -130,9 +135,7 @@ export const EditFeedbackDeleteBtn = styled.button`
     border-radius: 10px;
     cursor: pointer;
     @media (max-width:550px) {
-        padding: 8px 12px;
-        font-size: 12px;
-        margin-right: 10px;
+        margin-right: 0;
     }
 `
 export const EditFeedbackCancelBtn = styled(Link)`
@@ -148,9 +151,10 @@ export const EditFeedbackCancelBtn = styled(Link)`
     cursor: pointer;
     text-decoration: none;
     @media (max-width:550px) {
-        padding: 8px 12px;
-        font-size: 12px;
+        margin-right: 0;
+        margin-bottom: 16px;
     }
+    
 `
 export const EditFeedbackSubmitBtn = styled.button` 
     font-weight: 700;
@@ -163,7 +167,6 @@ export const EditFeedbackSubmitBtn = styled.button`
     border-radius: 10px;
     cursor: pointer;
     @media (max-width:550px) {
-        padding: 8px 12px;
-        font-size: 12px;
+        margin-bottom: 16px;
     }
 `
