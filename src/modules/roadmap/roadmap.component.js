@@ -51,10 +51,10 @@ export const RoadmapPage = () => {
                     <RoadmapBoardItem>
                         <RoadmapBoardItemTop>
                             <RoadmapBoardItemHeading>
-                            Planned
+                            In-Progress (3)
                             </RoadmapBoardItemHeading>
                             <RoadmapBoardItemDesc>
-                            Ideas prioritized for research
+                            Currently being developed
                             </RoadmapBoardItemDesc>
                         </RoadmapBoardItemTop>
                         <RoadmapList>
@@ -64,10 +64,10 @@ export const RoadmapPage = () => {
                     <RoadmapBoardItem>
                         <RoadmapBoardItemTop>
                             <RoadmapBoardItemHeading>
-                            Planned
+                            Live (1)
                             </RoadmapBoardItemHeading>
                             <RoadmapBoardItemDesc>
-                            Ideas prioritized for research
+                            Released features
                             </RoadmapBoardItemDesc>
                         </RoadmapBoardItemTop>
                         <RoadmapList>
