@@ -92,6 +92,9 @@ export const RoadmapCardUpvotes = styled.button`
     border: none;
     display: flex;
     align-items: center;
+    &:hover {
+        opacity: 0.5;
+    }
     &::before {
         ${(props) => props.isUpvoted ?  (`content: url(${arrowWhite});`) : (`content: url(${arrow});`)}
         margin-right: 12px;
