@@ -3,7 +3,6 @@
     margin-bottom: 14px;
 }
 .categories__item-name {
-    cursor: pointer;
     font-weight: 600;
     font-size: 13px;
     line-height: 19px;
@@ -13,8 +12,14 @@
     background-color: #F2F4FF;
     display: inline-block;
     pointer-events: none;
+    
+}
+.categories__item-label {
+    cursor: pointer;
     &:hover {
-        background-color: #CFD7FF;
+        .categories__item-name {
+            background-color: #CFD7FF;
+        }
     }
 }
 

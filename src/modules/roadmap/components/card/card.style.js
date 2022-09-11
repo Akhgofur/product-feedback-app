@@ -1,12 +1,29 @@
 import styled from "styled-components"
 import arrow from "../../../../assets/img/strelka.svg"
 import comment from '../../../../assets/img/comment.svg'
+import arrowWhite from '../../../../assets/img/arrow-white.svg' 
+
+const checkStatus = (status) => {
+    if(status === 'planned') {
+      return '#F49F85'
+    } else if(status === 'progress') {
+      return '#AD1FEA'
+    } else {
+      return '#62BCFA'
+    }
+  }
 
 export const RoadmapCard = styled.li`
+    &:not(:last-child) {
+        margin-bottom: 20px;
+    }
     padding: 32px;
-    border-top: 6px solid #F49F85;
+    border-top: 6px solid ${(props) => checkStatus(props.status)};
     border-radius: 5px;
     background-color: #fff;
+    @media (max-width:750px) {
+        padding: 15px;
+    }
 `
 export const RoadmapCardStatus = styled.p`
     margin: 0;
@@ -21,7 +38,7 @@ export const RoadmapCardStatus = styled.p`
         content: '';
         width: 8px;
         height: 8px;
-        background-color: #F49F85;
+        background-color: ${(props) => checkStatus(props.status)};
         border-radius: 50%;
         display: block;
         margin-right: 16px;
@@ -76,7 +93,7 @@ export const RoadmapCardUpvotes = styled.button`
     display: flex;
     align-items: center;
     &::before {
-        content: url(${arrow});
+        ${(props) => props.isUpvoted ?  (`content: url(${arrowWhite});`) : (`content: url(${arrow});`)}
         margin-right: 12px;
         display: block;
         margin-top: -2px;

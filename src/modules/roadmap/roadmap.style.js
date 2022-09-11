@@ -9,7 +9,7 @@ export const RoadmapContainer = styled.div`
     padding: 0 20px;
     width: 100%;
     padding-top: 78px;
-    @media (max-width: 500px) {
+    @media (max-width: 645px) {
         padding: 0;
     }
 `
@@ -20,7 +20,7 @@ export const RoadmapHeader = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    @media (max-width: 500px) {
+    @media (max-width: 645px) {
         border-radius: 0;
         padding: 26px 24px;
     }
@@ -63,7 +63,8 @@ export const RoadmapHeading = styled.h2`
 
 export const RoadmapNav = styled.nav`
     display: none;
-    @media (max-width: 500px) {
+    background-color: #fff;
+    @media (max-width: 645px) {
         display: block;
     }
 `
@@ -76,6 +77,7 @@ export const RoadmapNavList = styled.ul`
 `
 export const RoadmapNavItem = styled.li`
     flex-grow: 1;
+    
 `
 export const RoadmapNavBtn = styled.button`
     font-weight: 700;
@@ -91,9 +93,11 @@ export const RoadmapNavBtn = styled.button`
     background-color: transparent;
     border: none;
     cursor: pointer;
-    &[data-id] {
-        border-bottom: 4px solid #AD1FEA;
-        padding-bottom: 16px;
+    opacity: 0.4;
+    border-bottom: 4px solid #fff;
+    ${(props) =>
+    props.active === props.roadMap &&
+    "border-bottom-color: #AD1FEA; color: #3a4374; opacity: 1;"
     }
 `
 export const RoadmapMain = styled.div`
@@ -103,13 +107,23 @@ export const RoadmapBoard = styled.div`
     display: flex;
     align-items: flex-start;
     justify-content: center;
+    gap: 30px;
+    @media (max-width:750px) {
+        gap: 10px;
+    }
 `
 export const RoadmapBoardItem = styled.li`
     flex-grow: 1;
     list-style: none;
-    &:not(:last-child) {
-        margin-right: 30px;
+    max-width: 350px;
+    width: 100%;
+    @media only screen and (max-width: 645px) {
+    display: none;
+    ${(props) =>
+      props.active === props.roadMap &&
+      "display: block;"
     }
+  }
 `
 export const RoadmapBoardItemTop = styled.div`
     margin-bottom: 32px;

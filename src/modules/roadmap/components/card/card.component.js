@@ -1,23 +1,43 @@
 import { RoadmapCard, RoadmapCardBottom, RoadmapCardCategory, RoadmapCardComments, RoadmapCardDesc, RoadmapCardHeading, RoadmapCardStatus, RoadmapCardUpvotes } from "./card.style"
+import { Link } from "react-router-dom"
+import { useDispatch } from "react-redux"
+import { upVote, upVotePost } from "../../../../components/main-components/feedbacks/feedbacks-slice"
 
-export const RoadmapItem = () => {
+export const RoadmapItem = (
+    {id,
+    title,
+    upvotes,
+    desc,
+    isUpvoted,
+    comments,
+    status,
+    category}
+    ) => {
+        const dispatch = useDispatch()
+    const handleUpvote = () => {
+        let upvote = (isUpvoted ? upvotes - 1 : upvotes + 1)
+        const voted = !isUpvoted
+        const current = {id, voted, upvote}
+        dispatch(upVote(current))
+        dispatch(upVotePost(current))
+    }
     return(
-        <RoadmapCard>
-            <RoadmapCardStatus>
-                planned
+        <RoadmapCard status={status}>
+            <RoadmapCardStatus status={status}>
+                {status}
             </RoadmapCardStatus>
             <RoadmapCardHeading>
-            More comprehensive reports
+            <Link style={{textDecoration:'none', color:'inherit'}} to={`/single/${id}`} >{title}</Link>
             </RoadmapCardHeading>
             <RoadmapCardDesc>
-            It would be great to see a more detailed breakdown of solutions.
+            {desc}
             </RoadmapCardDesc>
             <RoadmapCardCategory>
-                feature
+                {category}
             </RoadmapCardCategory>
             <RoadmapCardBottom>
-                <RoadmapCardUpvotes>20</RoadmapCardUpvotes>
-                <RoadmapCardComments>2</RoadmapCardComments>
+                <RoadmapCardUpvotes isUpvoted={isUpvoted} style={isUpvoted ? ({background: '#4661E6', color: '#fff'}) : ({background: '#F2F4FE', color: '#3A4374'})} onClick={handleUpvote} >{upvotes}</RoadmapCardUpvotes>
+                <RoadmapCardComments>{comments.length}</RoadmapCardComments>
             </RoadmapCardBottom>
         </RoadmapCard>
     )
