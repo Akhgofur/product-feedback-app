@@ -12,7 +12,7 @@ function FeedbacksList({filter, data}){
             if(filter === "All"){
                 return <Feedback key={nanoid()} id={item.id} isVoted={item.isUpvoted} comments={item.comments ? item.comments.length : 0} title={item.title} desc={item.description} btn={item.category} votes={item.upvotes}/>
             }
-            if(item.category.toLowerCase() === filter.toLowerCase() ) {
+            else if(item.category.toLowerCase() === filter.toLowerCase() ) {
                 return <Feedback key={nanoid()} id={item.id} isVoted={item.isUpvoted} comments={item.comments ? item.comments.length : 0} title={item.title} desc={item.description} btn={item.category} votes={item.upvotes}/>
             }
         })
