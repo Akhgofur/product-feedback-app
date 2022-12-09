@@ -243,6 +243,7 @@ export const getFeedbacks = createAsyncThunk(
             [getFeedbacks.rejected]: (state, action) => {
                 state.loading = false
                 state.error = action.payload
+                state.status = 'error'
                 
             },
             [getFeedbacks.pending]: (state, action) => {
