@@ -12,6 +12,8 @@ function Main({filter, open}){
             dispatch(getFeedbacks())
     }
     const data = useSelector(state => state.feedbacks.feedbacks)
+    const errorStatus = useSelector(state => state.feedbacks.error)
+    console.log(errorStatus);
     
     return (
         <FeedbacksProvider>
@@ -20,7 +22,10 @@ function Main({filter, open}){
                 </div>
                 <MainHeader />
                 {
-                    feedbackStatus === "loading" ? <div className="wrapper"><b className="loading">Loading...</b></div> : <FeedbacksList data={data} filter={filter}  />
+                    feedbackStatus === "loading" ? <div className="wrapper"><b className="loading">Loading...</b></div> : (
+                        feedbackStatus === 'error' ? <div className="wrapper"><b className="loading">Error {errorStatus.message.toString().toLowerCase()}
+                        </b></div> : <FeedbacksList data={data} filter={filter}  />
+                    )
                 }
             </div>
         </FeedbacksProvider>

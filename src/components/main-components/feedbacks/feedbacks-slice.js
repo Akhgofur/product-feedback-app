@@ -18,6 +18,8 @@ export const getFeedbacks = createAsyncThunk(
             const data = await res.json()
             return data
         } catch (error) {
+            throw new Error(error.message)
+            // eslint-disable-next-line 
             return rejectWithValue(error)
         }
     }
